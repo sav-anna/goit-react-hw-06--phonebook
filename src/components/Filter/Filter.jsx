@@ -1,8 +1,16 @@
-import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 import css from './Filter.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { filterContacts } from 'redux/reducers';
 
-const Filter = ({ value, onChange }) => {
+const Filter = () => {
+  const value = useSelector(state => state.filter.filter);
+  const dispatch = useDispatch();
+
+  const onChange = e => {
+    dispatch(filterContacts(e.currentTarget.value));
+  };
+
   const id = nanoid();
   return (
     <div className={css.filter}>
@@ -26,8 +34,3 @@ const Filter = ({ value, onChange }) => {
 };
 
 export default Filter;
-
-Filter.propTypes = {
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-};
