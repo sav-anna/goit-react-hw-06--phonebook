@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { filterContacts } from 'redux/reducers';
 
 const Filter = () => {
-  const value = useSelector(state => state.filter.filter);
+  const filter = useSelector(state => state.filter.filter);
   const dispatch = useDispatch();
 
   const onChange = e => {
@@ -23,7 +23,7 @@ const Filter = () => {
           type="text"
           name="filter"
           placeholder="Type name"
-          value={value}
+          value={filter}
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           required
           onChange={onChange}
